@@ -3,6 +3,7 @@
     <h1>{{ message }}</h1>
     <p>Hello World!</p>
     <p>heyo!</p>
+    <p>Goodbye!</p>
   </div>
 </template>
 
