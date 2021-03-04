@@ -4,6 +4,7 @@
     <p>Hello World!</p>
     <p>heyo!</p>
     <p>Goodbye!</p>
+    <p>Sarah was here!</p>
   </div>
 </template>
 
