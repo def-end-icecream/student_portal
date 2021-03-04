@@ -2,6 +2,7 @@
   <div class="home">
     <h1>{{ message }}</h1>
     <p>Hello World!</p>
+    <p>heyo!</p>
   </div>
 </template>
 
