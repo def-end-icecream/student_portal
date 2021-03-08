@@ -64,10 +64,11 @@ export default {
   methods: {
     educationsEdit: function() {
       var params = {
-        name: this.education.name,
-        email: this.education.email,
-        image_url: this.education.image_url,
-        password: this.education.password,
+        start_date: this.education.start_date,
+        end_date: this.education.end_date,
+        degree: this.education.degrre,
+        university_name: this.education.university_name,
+        details: this.education.details,
         // education_id: this.post.educationId,
       };
       axios
