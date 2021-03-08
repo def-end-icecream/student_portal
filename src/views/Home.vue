@@ -5,6 +5,8 @@
     <p>heyo!</p>
     <p>Goodbye!</p>
     <p>Sarah was here!</p>
+    <router-link to="/experiences/new">New Experience</router-link> |
+    <router-link to="/experiences/:id/edit">Edit Experience</router-link>
   </div>
 </template>
 

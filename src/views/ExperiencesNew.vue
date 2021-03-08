@@ -11,7 +11,7 @@
       <input id="experience" type="text" v-model="company_name" /> <br />
       <label for="experience">Details: </label>
       <input id="experience" type="text" v-model="details" /> <br />
-      <input type="submit" value="Create" />
+      <input type="submit" value="Add Experience" />
     </form>
   </div>
 </template>
