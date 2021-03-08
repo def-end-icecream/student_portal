@@ -19,6 +19,11 @@
         type="submit"
         value="Save Changes"
       />
+      <input
+        v-on:click="destroyExperience(experience)"
+        type="button"
+        value="Remove Experience"
+      />
     </form>
   </div>
 </template>
@@ -61,6 +66,16 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    destroyExperience: function() {
+      if (confirm("Are you sure you want to delete this experience?")) {
+        axios
+          .delete(`/api/experiences/${this.experience.id}`)
+          .then((response) => {
+            console.log(response.data);
+            this.$router.push("/experiences");
+          });
+      }
     },
   },
 };
