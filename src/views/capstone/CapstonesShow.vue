@@ -1,5 +1,5 @@
 <template>
-  <div class="capstone-show">
+  <div class="capstones-show">
     <h2>Name: {{ capstone.name }}</h2>
     <h4>Description: {{ capstone.description }}</h4>
     <h4>{{ capstone.url }}</h4>
