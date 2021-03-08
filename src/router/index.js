@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
+import StudentsShow from "../views/StudentsShow.vue";
+import CapstonesShow from "../views/capstone/CapstonesShow.vue"
 import ExperiencesNew from "../views/ExperiencesNew.vue";
 import ExperiencesEdit from "../views/ExperiencesEdit.vue";
 
@@ -15,6 +17,11 @@ const routes = [
     component: Home,
   },
   {
+    path: "/students/1",
+    name: "students-show",
+    component: StudentsShow,
+  },
+  {
     path: "/login",
     name: "login",
     component: Login,
@@ -23,6 +30,11 @@ const routes = [
     path: "/logout",
     name: "logout",
     component: Logout,
+  },
+  {
+    path: "/capstones/1",
+    name: "capstone-show",
+    component: CapstonesShow
   },
   {
     path: "/experiences/new",

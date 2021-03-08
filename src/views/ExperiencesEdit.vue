@@ -2,15 +2,18 @@
   <div class="experiences-edit">
     <form v-on:submit.prevent="updateExperience()">
       <label for="experience">Start Date: </label>
-      <input id="experience" type="text" v-model="start_date" /> <br />
+      <input id="experience" type="text" v-model="experience.start_date" />
+      <br />
       <label for="experience">End Date: </label>
-      <input id="experience" type="text" v-model="end_date" /> <br />
+      <input id="experience" type="text" v-model="experience.end_date" /> <br />
       <label for="experience">Job Title: </label>
-      <input id="experience" type="text" v-model="job_title" /> <br />
+      <input id="experience" type="text" v-model="experience.job_title" />
+      <br />
       <label for="experience">Company Name: </label>
-      <input id="experience" type="text" v-model="company_name" /> <br />
+      <input id="experience" type="text" v-model="experience.company_name" />
+      <br />
       <label for="experience">Details: </label>
-      <input id="experience" type="text" v-model="details" /> <br />
+      <input id="experience" type="text" v-model="experience.details" /> <br />
       <input
         v-on:click="updateExperience(experience)"
         type="submit"
