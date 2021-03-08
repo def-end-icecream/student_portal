@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
+import CapstonesShow from "../views/capstone/CapstonesShow.vue"
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,11 @@ const routes = [
     name: "logout",
     component: Logout,
   },
+  {
+    path: "/capstones/1",
+    name: "capstone-show",
+    component: CapstonesShow
+  }
 ];
 
 const router = new VueRouter({
