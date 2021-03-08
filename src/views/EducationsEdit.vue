@@ -66,7 +66,7 @@ export default {
       var params = {
         start_date: this.education.start_date,
         end_date: this.education.end_date,
-        degree: this.education.degrre,
+        degree: this.education.degree,
         university_name: this.education.university_name,
         details: this.education.details,
         // education_id: this.post.educationId,

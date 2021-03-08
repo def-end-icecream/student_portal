@@ -28,7 +28,7 @@ const routes = [
     component: EducationsEdit
   },
   {
-    path: "educations/new",
+    path: "/educations/new",
     name: "educations-new",
     component: EducationsNew,
   },

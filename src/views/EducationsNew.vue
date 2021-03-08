@@ -2,8 +2,7 @@
   <div class="educations-new">
     <div class="container">
       <form v-on:submit.prevent="educationNew()">
-        <p v-if="!$parent.loggedIn()">Please log in to create post</p>
-        <h1>Create New Post</h1>
+        <h1>Create New Education Experience</h1>
 
         <ul>
           <li class="text-danger" v-for="error in errors" v-bind:key="error">
@@ -57,7 +56,11 @@ export default {
   methods: {
     educationNew: function() {
       var params = {
-        body: this.body,
+        start_date: this.start_date,
+        end_date: this.end_date,
+        degree: this.degree,
+        university_name: this.university_name,
+        details: this.details,
         // user_id: this.userId,
       };
       axios

@@ -22,15 +22,16 @@
         <p>Details: {{ experience.details }}</p>
       </div>
       <h1>Education</h1>
+      <router-link to="/educations/new"
+        >Create Another Education Instance</router-link
+      >
       <div v-for="education in educations" v-bind:key="education.start_date">
         <h2>Degree: {{ education.degree }}</h2>
         <p>Start Date: {{ education.start_date }}</p>
         <p>End Date: {{ education.end_date }}</p>
         <p>University Name: {{ education.university_name }}</p>
         <p>Details: {{ education.details }}</p>
-        <router-link to="educations/new"
-          >Create Another Education Instance</router-link
-        >
+        <router-link to="/educations/:id/edit">Edit</router-link>
       </div>
       <h1>Skills</h1>
       <div v-for="skill in skills" v-bind:key="skill.skill_name">
