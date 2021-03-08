@@ -31,8 +31,11 @@
       </div>
       <h1>Skills</h1>
       <div v-for="skill in skills" v-bind:key="skill.skill_name">
-        <p>Name: {{ skill.skill_name }}</p>
+        <p>{{ skill.skill_name }}</p>
       </div>
+      <input type="text" v-model="newSkill" />
+      <button v-on:click="addSkill()">Add</button>
+
       <h1>Capstone</h1>
       <div v-for="capstone in capstones" v-bind:key="capstone.capstone_name">
         <h2>Name: {{ capstone.name }}</h2>
@@ -102,6 +105,7 @@ export default {
           skill_name: "sniffing",
         },
       ],
+      newSkill: "",
       capstones: [
         {
           name: "toy directory",
@@ -124,6 +128,20 @@ export default {
       this.student = response.data;
     });
   },
-  methods: {},
+  methods: {
+    addSkill: function() {
+      console.log(this.newSkill);
+      this.skills.push({ skill_name: this.newSkill });
+      // axios
+      //   .post("/api/skills", { skill_name: this.newSkill })
+      //   .then(response => {
+      //     console.log(response);
+      //   })
+      //   .catch(error => {
+      //     this.status = error.response.status;
+      //     this.errors = error.response.data.errors;
+      //   });
+    },
+  },
 };
 </script>
