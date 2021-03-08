@@ -28,6 +28,9 @@
         <p>End Date: {{ education.end_date }}</p>
         <p>University Name: {{ education.university_name }}</p>
         <p>Details: {{ education.details }}</p>
+        <router-link to="educations/new"
+          >Create Another Education Instance</router-link
+        >
       </div>
       <h1>Skills</h1>
       <div v-for="skill in skills" v-bind:key="skill.skill_name">
