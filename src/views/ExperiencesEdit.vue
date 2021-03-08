@@ -44,13 +44,13 @@ export default {
       });
   },
   methods: {
-    updateExperience: function() {
+    updateExperience: function(experience) {
       var params = {
-        start_date: this.experience.start_date,
-        end_date: this.experience.end_date,
-        job_title: this.experience.job_title,
-        company_name: this.experience.company_name,
-        details: this.experience.details,
+        start_date: experience.start_date,
+        end_date: experience.end_date,
+        job_title: experience.job_title,
+        company_name: experience.company_name,
+        details: experience.details,
       };
       axios
         .patch(`api/experiences/${this.experience.id}`, params)
