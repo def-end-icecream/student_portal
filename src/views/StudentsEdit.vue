@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   data: function() {
@@ -79,13 +79,12 @@ export default {
     };
   },
   created: function() {
-    axios.get(`/api/students/${this.$route.params.id}`).then(response => {
-      this.student = response.data;
-    });
+    // axios.get(`/api/students/${this.$route.params.id}`).then(response => {
+    //   this.student = response.data;
+    // });
   },
   methods: {
     updateProfile: function() {
-      console.log("profile updated!");
       var params = {
         first_name: this.student.first_name,
         last_name: this.student.last_name,
@@ -100,15 +99,17 @@ export default {
         image_url: this.student.image_url,
       };
 
-      axios
-        .patch(`/api/students/${this.student.id}`, params)
-        .then(response => {
-          console.log(response.data);
-          this.$router.push(`/students/${this.student.id}`);
-        })
-        .catch(error => {
-          this.errors = error.response.data.errors;
-        });
+      console.log("profile updated!", params);
+
+      // axios
+      //   .patch(`/api/students/${this.student.id}`, params)
+      //   .then(response => {
+      //     console.log(response.data);
+      //     this.$router.push(`/students/${this.student.id}`);
+      //   })
+      //   .catch(error => {
+      //     this.errors = error.response.data.errors;
+      //   });
     },
   },
 };
