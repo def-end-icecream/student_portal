@@ -7,6 +7,7 @@ import StudentsShow from "../views/StudentsShow.vue";
 import CapstonesShow from "../views/capstone/CapstonesShow.vue";
 import CapstonesEdit from "../views/capstone/CapstonesEdit.vue";
 import CapstonesNew from "../views/capstone/CapstonesNew.vue";
+import StudentsEdit from "../views/StudentsEdit.vue";
 import ExperiencesNew from "../views/ExperiencesNew.vue";
 
 Vue.use(VueRouter);
@@ -21,6 +22,11 @@ const routes = [
     path: "/students/:id",
     name: "students-show",
     component: StudentsShow,
+  },
+  {
+    path: "/students/:id/edit",
+    name: "students-edit",
+    component: StudentsEdit,
   },
   {
     path: "/login",

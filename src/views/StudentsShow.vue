@@ -13,6 +13,7 @@
       <p>Online Resume URL: {{ student.resume_url }}</p>
       <p>Github URL: {{ student.github_url }}</p>
       <p>Photo: {{ student.image_url }}</p>
+      <router-link :to="`/students/${student.id}/edit`">Edit Profile</router-link>
       <h1>Experience</h1>
       <div v-for="experience in experiences" v-bind:key="experience.start_date">
         <h2>Job Title: {{ experience.job_title }}</h2>
@@ -31,8 +32,14 @@
       </div>
       <h1>Skills</h1>
       <div v-for="skill in skills" v-bind:key="skill.skill_name">
-        <p>Name: {{ skill.skill_name }}</p>
+        <p>
+          {{ skill.skill_name }}
+          <button v-on:click="removeSkill(skill)">x</button>
+        </p>
       </div>
+      <input type="text" v-model="newSkill" />
+      <button v-on:click="addSkill()">Add</button>
+
       <h1>Capstone</h1>
       <router-link v-bind:to="`/capstones/new`"
         ><button>Add New Capstone</button></router-link
@@ -108,6 +115,7 @@ export default {
           skill_name: "sniffing",
         },
       ],
+      newSkill: "",
       capstones: [
         {
           name: "toy directory",
@@ -130,6 +138,35 @@ export default {
       this.student = response.data;
     });
   },
-  methods: {},
+  methods: {
+    addSkill: function() {
+      console.log(this.newSkill);
+      this.skills.push({ skill_name: this.newSkill });
+      this.newSkill = "";
+      // axios
+      //   .post("/api/skills", { skill_name: this.newSkill })
+      //   .then(response => {
+      //     console.log(response);
+      //   })
+      //   .catch(error => {
+      //     this.status = error.response.status;
+      //     this.errors = error.response.data.errors;
+      //   });
+    },
+    removeSkill: function(skill) {
+      var index = this.skills.indexOf(skill);
+      this.skills.splice(index, 1);
+      // axios
+      //   .delete(`/api/skills/${skill.id}`)
+      //   .then(response => {
+      //     console.log(response.data);
+      //     var index = this.skills.indexOf(skill);
+      //     this.skills.splice(index, 1);
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   });
+    },
+  },
 };
 </script>
