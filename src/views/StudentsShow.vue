@@ -13,7 +13,9 @@
       <p>Online Resume URL: {{ student.resume_url }}</p>
       <p>Github URL: {{ student.github_url }}</p>
       <p>Photo: {{ student.image_url }}</p>
-      <router-link :to="`/students/${student.id}/edit`">Edit Profile</router-link>
+      <router-link :to="`/students/${student.id}/edit`"
+        >Edit Profile</router-link
+      >
       <h1>Experience</h1>
       <router-link to="/experiences/new">New Experience</router-link>
       <div v-for="experience in experiences" v-bind:key="experience.start_date">
@@ -50,16 +52,14 @@
       <button v-on:click="addSkill()">Add</button>
 
       <h1>Capstone</h1>
-      <router-link v-bind:to="`/capstones/new`"
-        ><button>Add New Capstone</button></router-link
-      >
+      <router-link v-bind:to="`/capstones/new`">Add New Capstone</router-link>
       <div v-for="capstone in capstones" v-bind:key="capstone.capstone_name">
         <h2>Name: {{ capstone.name }}</h2>
         <p>URL: {{ capstone.url }}</p>
         <p>Description: {{ capstone.description }}</p>
         <p>Screenshot: {{ capstone.screenshot }}</p>
         <router-link v-bind:to="`/capstones/${capstone.id}/edit`"
-          ><button>Edit Capstone</button></router-link
+          >Edit Capstone</router-link
         >
       </div>
     </div>
