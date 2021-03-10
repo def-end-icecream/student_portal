@@ -15,20 +15,29 @@
       <p>Photo: {{ student.image_url }}</p>
       <router-link :to="`/students/${student.id}/edit`">Edit Profile</router-link>
       <h1>Experience</h1>
+      <router-link to="/experiences/new">New Experience</router-link>
       <div v-for="experience in experiences" v-bind:key="experience.start_date">
         <h2>Job Title: {{ experience.job_title }}</h2>
         <p>Start Date: {{ experience.start_date }}</p>
         <p>End Date: {{ experience.end_date }}</p>
         <p>Company Name: {{ experience.company_name }}</p>
         <p>Details: {{ experience.details }}</p>
+
+        <router-link :to="`/experiences/${experience.id}/edit`"
+          >Edit Experience</router-link
+        >
       </div>
       <h1>Education</h1>
+      <router-link to="/educations/new"
+        >Create Another Education Instance</router-link
+      >
       <div v-for="education in educations" v-bind:key="education.start_date">
         <h2>Degree: {{ education.degree }}</h2>
         <p>Start Date: {{ education.start_date }}</p>
         <p>End Date: {{ education.end_date }}</p>
         <p>University Name: {{ education.university_name }}</p>
         <p>Details: {{ education.details }}</p>
+        <router-link to="/educations/:id/edit">Edit</router-link>
       </div>
       <h1>Skills</h1>
       <div v-for="skill in skills" v-bind:key="skill.skill_name">

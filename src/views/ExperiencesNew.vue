@@ -11,13 +11,13 @@
       <input id="experience" type="text" v-model="company_name" /> <br />
       <label for="experience">Details: </label>
       <input id="experience" type="text" v-model="details" /> <br />
-      <input type="submit" value="Create" />
+      <input type="submit" value="Add Experience" />
     </form>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   data: function() {
     return {
@@ -38,15 +38,17 @@ export default {
         company_name: this.company_name,
         details: this.details,
       };
-      axios
-        .post("api/experiences", params)
-        .then((response) => {
-          console.log(response.data);
-          this.$router.push("/experiences");
-        })
-        .catch((error) => {
-          console.log(error.response.data.errors);
-        });
+      console.log(params);
+      this.$router.push("/students/1");
+      //   axios
+      //     .post("api/experiences", params)
+      //     .then((response) => {
+      //       console.log(response.data);
+      //       this.$router.push("/experiences");
+      //     })
+      //     .catch((error) => {
+      //       console.log(error.response.data.errors);
+      //     });
     },
   },
 };
