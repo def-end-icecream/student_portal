@@ -4,7 +4,8 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import StudentsShow from "../views/StudentsShow.vue";
-import CapstonesShow from "../views/capstone/CapstonesShow.vue";
+import StudentsEdit from "../views/StudentsEdit.vue";
+import CapstonesShow from "../views/capstone/CapstonesShow.vue"
 import ExperiencesNew from "../views/ExperiencesNew.vue";
 import EducationsNew from "../views/EducationsNew.vue";
 import EducationsEdit from "../views/EducationsEdit.vue";
@@ -31,6 +32,11 @@ const routes = [
     path: "/educations/new",
     name: "educations-new",
     component: EducationsNew,
+  },
+  {
+    path: "/students/:id/edit",
+    name: "students-edit",
+    component: StudentsEdit,
   },
   {
     path: "/login",
