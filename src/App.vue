@@ -4,7 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link v-if="!isLoggedIn()" to="/login">Login</router-link> |
       <router-link v-if="isLoggedIn()" to="/logout">Logout</router-link> |
-      <router-link to="/students/1">Student Show</router-link> |
+      <router-link to="/students/:id">Student Show</router-link> |
       <router-link to="/experiences/new">New Experience</router-link> |
     </div>
     <router-view />

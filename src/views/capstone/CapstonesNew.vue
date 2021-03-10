@@ -1,7 +1,7 @@
 <template>
   <div class="capstones-new">
     <h1>New Capstone</h1>
-    <form v-on:submit.prevent="createCaptone()">
+    <form v-on:submit.prevent="createCapstone()">
       <ul>
         <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
       </ul>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   data: function() {
     return {
@@ -41,16 +41,18 @@ export default {
         url: this.url,
         screenshot: this.screenshot,
       };
-      axios
-        .post("/api/capstones", params)
-        .then((response) => {
-          console.log("capstone create", response);
-          this.$router.push("/students/1");
-        })
-        .catch((error) => {
-          console.log("post create error", error.response);
-          this.errors = error.response.data.errors;
-        });
+      console.log(params);
+      this.$router.push("/students/1");
+      // axios
+      //   .post("/api/capstones", params)
+      //   .then((response) => {
+      //     console.log("capstone create", response);
+      //     this.$router.push("/students/1");
+      //   })
+      //   .catch((error) => {
+      //     console.log("post create error", error.response);
+      //     this.errors = error.response.data.errors;
+      //   });
     },
   },
 };
