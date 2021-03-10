@@ -4,7 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link v-if="!isLoggedIn()" to="/login">Login</router-link> |
       <router-link v-if="isLoggedIn()" to="/logout">Logout</router-link> |
-      <router-link to="/students/1">Student Show</router-link>
+      <router-link v-if="isLoggedIn()" :to="`/students/${getStudentId()}`">Student Show</router-link>
 
       <router-link to="/experiences/new">New Experience</router-link> |
     </div>
@@ -40,6 +40,9 @@ export default {
   methods: {
     isLoggedIn: function() {
       return localStorage.getItem("jwt");
+    },
+    getStudentId: function() {
+      return localStorage.getItem("student_id");
     },
   },
 };
