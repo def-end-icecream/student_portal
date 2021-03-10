@@ -31,7 +31,10 @@
       </div>
       <h1>Skills</h1>
       <div v-for="skill in skills" v-bind:key="skill.skill_name">
-        <p>{{ skill.skill_name }}</p>
+        <p>
+          {{ skill.skill_name }}
+          <button v-on:click="removeSkill(skill)">x</button>
+        </p>
       </div>
       <input type="text" v-model="newSkill" />
       <button v-on:click="addSkill()">Add</button>
@@ -53,7 +56,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 
 export default {
   data: function() {
@@ -123,10 +126,10 @@ export default {
     };
   },
   created: function() {
-    // axios.get(`/api/students/${this.$route.params.id}`).then((response) => {
-    //   console.log(response.data);
-    //   this.student = response.data;
-    // });
+    axios.get(`/api/students/${this.$route.params.id}`).then((response) => {
+      console.log(response.data);
+      this.student = response.data;
+    });
   },
   methods: {
     addSkill: function() {
@@ -141,6 +144,20 @@ export default {
       //   .catch(error => {
       //     this.status = error.response.status;
       //     this.errors = error.response.data.errors;
+      //   });
+    },
+    removeSkill: function(skill) {
+      var index = this.skills.indexOf(skill);
+      this.skills.splice(index, 1);
+      // axios
+      //   .delete(`/api/skills/${skill.id}`)
+      //   .then(response => {
+      //     console.log(response.data);
+      //     var index = this.skills.indexOf(skill);
+      //     this.skills.splice(index, 1);
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
       //   });
     },
   },
