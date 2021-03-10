@@ -57,7 +57,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 
 export default {
   data: function() {
@@ -79,9 +79,9 @@ export default {
     };
   },
   created: function() {
-    // axios.get(`/api/students/${this.$route.params.id}`).then(response => {
-    //   this.student = response.data;
-    // });
+    axios.get(`/api/students/${this.$route.params.id}`).then(response => {
+      this.student = response.data;
+    });
   },
   methods: {
     updateProfile: function() {
@@ -100,7 +100,7 @@ export default {
       };
 
       console.log("profile updated!", params);
-
+      this.$router.push(`/students/${this.$route.params.id}`);
       // axios
       //   .patch(`/api/students/${this.student.id}`, params)
       //   .then(response => {

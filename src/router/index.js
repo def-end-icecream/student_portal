@@ -22,7 +22,7 @@ const routes = [
     component: StudentsShow,
   },
   {
-    path: "/students/1/edit",
+    path: "/students/:id/edit",
     name: "students-edit",
     component: StudentsEdit,
   },
