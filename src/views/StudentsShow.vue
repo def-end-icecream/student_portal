@@ -13,7 +13,7 @@
       <p>Online Resume URL: {{ student.resume_url }}</p>
       <p>Github URL: {{ student.github_url }}</p>
       <p>Photo: {{ student.image_url }}</p>
-      <router-link to="/students/1/edit">Edit Profile</router-link>
+      <router-link :to="`/students/${student.id}/edit`">Edit Profile</router-link>
       <h1>Experience</h1>
       <div v-for="experience in experiences" v-bind:key="experience.start_date">
         <h2>Job Title: {{ experience.job_title }}</h2>
