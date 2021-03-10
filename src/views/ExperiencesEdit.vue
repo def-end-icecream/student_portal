@@ -1,6 +1,6 @@
 <template>
   <div class="experiences-edit">
-    <form v-on:submit.prevent="updateExperience()">
+    <form v-on:submit.prevent="updateExperience(experience)">
       <label for="experience">Start Date: </label>
       <input id="experience" type="text" v-model="experience.start_date" />
       <br />
@@ -14,11 +14,7 @@
       <br />
       <label for="experience">Details: </label>
       <input id="experience" type="text" v-model="experience.details" /> <br />
-      <input
-        v-on:click="updateExperience(experience)"
-        type="submit"
-        value="Save Changes"
-      />
+      <input type="submit" value="Save Changes" />
       <input
         v-on:click="destroyExperience(experience)"
         type="button"
@@ -29,54 +25,71 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   data: function() {
     return {
-      experience: {},
+      experience: {
+        start_date: "12/12/12",
+        end_date: "13/13/13",
+        job_title: "Manager",
+        company_name: "place",
+        details: "skfnknf",
+      },
       errors: [],
     };
   },
   created: function() {
-    axios
-      .get(`/api/experiences/${this.$route.params.id}`)
-      .then((response) => {
-        this.experience = response.data;
-        console.log(this.experience);
-      })
-      .catch((error) => {
-        console.log(error.response.data.errors);
-      });
+    var params = {
+      start_date: this.start_date,
+      end_date: this.end_date,
+      job_title: this.job_title,
+      company_name: this.company_name,
+      details: this.details,
+    };
+    console.log(params);
+    // axios
+    //   .get(`/api/experiences/${this.$route.params.id}`)
+    //   .then((response) => {
+    //     this.experience = response.data;
+    //     console.log(this.experience);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.response.data.errors);
+    //   });
   },
   methods: {
-    updateExperience: function(experience) {
+    updateExperience: function() {
       var params = {
-        start_date: experience.start_date,
-        end_date: experience.end_date,
-        job_title: experience.job_title,
-        company_name: experience.company_name,
-        details: experience.details,
+        start_date: this.experience.start_date,
+        end_date: this.experience.end_date,
+        job_title: this.experience.job_title,
+        company_name: this.experience.company_name,
+        details: this.experience.details,
       };
-      axios
-        .patch(`api/experiences/${this.experience.id}`, params)
-        .then((response) => {
-          console.log(response.data);
-          this.$router.push(`/experiences/${this.experience.id}`);
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
+      console.log(params);
+      this.$router.push("/students/1");
     },
-    destroyExperience: function() {
-      if (confirm("Are you sure you want to delete this experience?")) {
-        axios
-          .delete(`/api/experiences/${this.experience.id}`)
-          .then((response) => {
-            console.log(response.data);
-            this.$router.push("/experiences");
-          });
-      }
-    },
+    //     axios
+    //       .patch(`api/experiences/${this.experience.id}`, params)
+    //       .then((response) => {
+    //         console.log(response.data);
+    //         this.$router.push(`/experiences/${this.experience.id}`);
+    //       })
+    //       .catch((error) => {
+    //         this.errors = error.response.data.errors;
+    //       });
+    //   },
+    //   destroyExperience: function() {
+    //     if (confirm("Are you sure you want to delete this experience?")) {
+    //       axios
+    //         .delete(`/api/experiences/${this.experience.id}`)
+    //         .then((response) => {
+    //           console.log(response.data);
+    //           this.$router.push("/experiences");
+    //         });
+    //     }
+    //   },
   },
 };
 </script>
