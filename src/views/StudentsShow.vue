@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   data: function() {
@@ -123,15 +123,16 @@ export default {
     };
   },
   created: function() {
-    axios.get(`/api/students/${this.$route.params.id}`).then((response) => {
-      console.log(response.data);
-      this.student = response.data;
-    });
+    // axios.get(`/api/students/${this.$route.params.id}`).then((response) => {
+    //   console.log(response.data);
+    //   this.student = response.data;
+    // });
   },
   methods: {
     addSkill: function() {
       console.log(this.newSkill);
       this.skills.push({ skill_name: this.newSkill });
+      this.newSkill = "";
       // axios
       //   .post("/api/skills", { skill_name: this.newSkill })
       //   .then(response => {
