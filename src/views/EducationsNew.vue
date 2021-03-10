@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   data: function() {
@@ -63,16 +63,18 @@ export default {
         details: this.details,
         // user_id: this.userId,
       };
-      axios
-        .post("/api/posts", params)
-        .then((response) => {
-          console.log(response.data);
-          this.$router.push("/posts");
-        })
-        .catch((error) => {
-          this.status = error.response.status;
-          this.errors = error.response.data.errors;
-        });
+      console.log(params);
+      this.$router.push("/students/1");
+      // axios
+      //   .post("/api/posts", params)
+      //   .then((response) => {
+      //     console.log(response.data);
+      //     this.$router.push("/posts");
+      //   })
+      //   .catch((error) => {
+      //     this.status = error.response.status;
+      //     this.errors = error.response.data.errors;
+      //   });
     },
   },
 };
