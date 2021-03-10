@@ -50,11 +50,17 @@
       <button v-on:click="addSkill()">Add</button>
 
       <h1>Capstone</h1>
+      <router-link v-bind:to="`/capstones/new`"
+        ><button>Add New Capstone</button></router-link
+      >
       <div v-for="capstone in capstones" v-bind:key="capstone.capstone_name">
         <h2>Name: {{ capstone.name }}</h2>
         <p>URL: {{ capstone.url }}</p>
         <p>Description: {{ capstone.description }}</p>
         <p>Screenshot: {{ capstone.screenshot }}</p>
+        <router-link v-bind:to="`/capstones/${capstone.id}/edit`"
+          ><button>Edit Capstone</button></router-link
+        >
       </div>
     </div>
     <!-- <div v-if="student.user_id == $parent.getUserID()">

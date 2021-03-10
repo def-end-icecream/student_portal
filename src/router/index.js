@@ -4,6 +4,8 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import StudentsShow from "../views/StudentsShow.vue";
+import CapstonesEdit from "../views/capstone/CapstonesEdit.vue";
+import CapstonesNew from "../views/capstone/CapstonesNew.vue";
 import StudentsEdit from "../views/StudentsEdit.vue";
 import CapstonesShow from "../views/capstone/CapstonesShow.vue";
 import ExperiencesNew from "../views/ExperiencesNew.vue";
@@ -51,8 +53,18 @@ const routes = [
   },
   {
     path: "/capstones/1",
-    name: "capstone-show",
+    name: "capstones-show",
     component: CapstonesShow
+  },
+  {
+    path: "/capstones/:id/edit",
+    name: "capstones-edit",
+    component: CapstonesEdit
+  },
+  {
+    path: "/capstones/new",
+    name: "capstones-new",
+    component: CapstonesNew
   },
   {
     path: "/experiences/new",
