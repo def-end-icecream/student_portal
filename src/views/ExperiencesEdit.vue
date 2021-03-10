@@ -82,12 +82,13 @@ export default {
     //   },
     destroyExperience: function() {
       if (confirm("Are you sure you want to delete this experience?")) {
-        axios
-          .delete(`/api/experiences/${this.experience.id}`)
-          .then((response) => {
-            console.log(response.data);
-            this.$router.push("/experiences");
-          });
+        console.log("Deleted");
+        // axios
+        //   .delete(`/api/experiences/${this.experience.id}`)
+        //   .then((response) => {
+        //     console.log(response.data);
+        //     this.$router.push("/experiences");
+        //   });
       }
     },
   },
