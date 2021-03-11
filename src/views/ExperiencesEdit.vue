@@ -26,6 +26,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 export default {
   data: function() {
     return {
@@ -80,6 +81,9 @@ export default {
             this.$router.push(`/students/${this.$parent.getStudentId()}`);
           });
       }
+    },
+    formattedDate: function(date) {
+      return moment(date).format();
     },
   },
 };

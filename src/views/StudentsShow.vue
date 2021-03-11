@@ -8,9 +8,13 @@
       <p>Short Bio: {{ student.short_bio }}</p>
       <a :href="student.linkedin_url" target="_blank">LinkedIn</a>
       <br />
-      <a :href="`https://twitter.com/${student.twitter_handle}`" target="_blank">Twitter</a>
+      <a :href="`https://twitter.com/${student.twitter_handle}`" target="_blank"
+        >Twitter</a
+      >
       <br />
-      <a :href="student.personal_website_url" target="_blank">Personal Website</a>
+      <a :href="student.personal_website_url" target="_blank"
+        >Personal Website</a
+      >
       <br />
       <a :href="student.resume_url" target="_blank">Resume</a>
       <br />
@@ -26,8 +30,8 @@
         v-bind:key="experience.start_date"
       >
         <h2>Job Title: {{ experience.job_title }}</h2>
-        <p>Start Date: {{ experience.start_date }}</p>
-        <p>End Date: {{ experience.end_date }}</p>
+        <p>Start Date: {{ formattedDate(experience.start_date) }}</p>
+        <p>End Date: {{ formattedDate(experience.end_date) }}</p>
         <p>Company Name: {{ experience.company_name }}</p>
         <p>Details: {{ experience.details }}</p>
 
@@ -85,6 +89,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 
 export default {
   data: function() {
@@ -187,6 +192,9 @@ export default {
       //   .catch(error => {
       //     console.log(error);
       //   });
+    },
+    formattedDate: function(date) {
+      return moment(date).format("MMM Do YY");
     },
   },
 };
