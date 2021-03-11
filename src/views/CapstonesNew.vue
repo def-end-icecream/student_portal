@@ -21,7 +21,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 export default {
   data: function() {
     return {
@@ -41,18 +41,16 @@ export default {
         url: this.url,
         screenshot: this.screenshot,
       };
-      console.log(params);
-      this.$router.push("/students/1");
-      // axios
-      //   .post("/api/capstones", params)
-      //   .then((response) => {
-      //     console.log("capstone create", response);
-      //     this.$router.push("/students/1");
-      //   })
-      //   .catch((error) => {
-      //     console.log("post create error", error.response);
-      //     this.errors = error.response.data.errors;
-      //   });
+      axios
+        .post("/api/capstones", params)
+        .then((response) => {
+          console.log("capstone create", response);
+          this.$router.push(`/students/${this.$parent.getStudentId()}`);
+        })
+        .catch((error) => {
+          console.log("post create error", error.response);
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };

@@ -65,25 +65,20 @@
       <button v-on:click="addSkill()">Add</button>
 
       <h1>Capstone</h1>
-      <router-link v-bind:to="`/capstones/new`">Add New Capstone</router-link>
+      <router-link to="/capstones/new">Add New Capstone</router-link>
       <div
         v-for="capstone in student.capstones"
         v-bind:key="capstone.capstone_name"
       >
         <h2>Name: {{ capstone.name }}</h2>
-        <p>URL: {{ capstone.url }}</p>
+        <a :href="capstone.url">Capstone URL</a>
         <p>Description: {{ capstone.description }}</p>
-        <p>Screenshot: {{ capstone.screenshot }}</p>
+        <img :src="capstone.screenshot" />
         <router-link v-bind:to="`/capstones/${capstone.id}/edit`"
           >Edit Capstone</router-link
         >
       </div>
     </div>
-    <!-- <div v-if="student.user_id == $parent.getUserID()">
-      <router-link :to="`/students/${student.id}/edit`">Edit</router-link>
-    </div> -->
-    <!-- <router-link :to="`/posts/${post.id}/edit`">Edit</router-link>
-    <button v-on:click="postDestroy()">Delete Post</button> -->
   </div>
 </template>
 

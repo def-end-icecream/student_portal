@@ -12,13 +12,7 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      capstone: {
-        name: "Project 1",
-        description: "Project 1 description",
-        url: "project1.com",
-        screenshot:
-          "https://image.freepik.com/free-vector/illustration-data-folder-icon_53876-6329.jpg",
-      },
+      capstone: {},
     };
   },
   created: function() {
