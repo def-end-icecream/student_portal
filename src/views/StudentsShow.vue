@@ -55,9 +55,9 @@
         <router-link :to="`/educations/${education.id}/edit`">Edit</router-link>
       </div>
       <h1>Skills</h1>
-      <div v-for="skill in skills" v-bind:key="skill.skill_name">
+      <div v-for="skill in student.skills" v-bind:key="skill.name">
         <p>
-          {{ skill.skill_name }}
+          {{ skill.name }}
           <button v-on:click="removeSkill(skill)">x</button>
         </p>
       </div>
@@ -65,25 +65,20 @@
       <button v-on:click="addSkill()">Add</button>
 
       <h1>Capstone</h1>
-      <router-link v-bind:to="`/capstones/new`">Add New Capstone</router-link>
+      <router-link to="/capstones/new">Add New Capstone</router-link>
       <div
         v-for="capstone in student.capstones"
         v-bind:key="capstone.capstone_name"
       >
         <h2>Name: {{ capstone.name }}</h2>
-        <p>URL: {{ capstone.url }}</p>
+        <a :href="capstone.url">Capstone URL</a>
         <p>Description: {{ capstone.description }}</p>
-        <p>Screenshot: {{ capstone.screenshot }}</p>
+        <img :src="capstone.screenshot" />
         <router-link v-bind:to="`/capstones/${capstone.id}/edit`"
           >Edit Capstone</router-link
         >
       </div>
     </div>
-    <!-- <div v-if="student.user_id == $parent.getUserID()">
-      <router-link :to="`/students/${student.id}/edit`">Edit</router-link>
-    </div> -->
-    <!-- <router-link :to="`/posts/${post.id}/edit`">Edit</router-link>
-    <button v-on:click="postDestroy()">Delete Post</button> -->
   </div>
 </template>
 
@@ -94,68 +89,8 @@ import moment from "moment";
 export default {
   data: function() {
     return {
-      student: {
-        first_name: "Alice",
-        last_name: "Evans",
-        email: "a@gmail.com",
-        phone_number: "111-222-3333",
-        short_bio: "I love sticks",
-        linkedin_url: "linkedin.com",
-        twitter_handle: "@alice",
-        personal_website_url: "alice.com",
-        resume_url: "aliceresume.com",
-        github_url: "alicegit",
-        image_url:
-          "https://i.pinimg.com/236x/d2/de/71/d2de7134f98c49d1f27cb47f2f91d002--quakertown-pa-bloodhound.jpg",
-      },
-      experiences: [
-        {
-          start_date: "12/05/18",
-          end_date: "03/08/21",
-          job_title: "professional stick chaser",
-          company_name: "stick catchers",
-          details: "I ran after sticks",
-        },
-        {
-          start_date: "11/06/18",
-          end_date: "02/07/21",
-          job_title: "guard dog",
-          company_name: "scary dogs",
-          details: "I bark at harmless nice people",
-        },
-      ],
-      educations: [
-        {
-          start_date: "10/10/12",
-          end_date: "10/10/13",
-          degree: "best pup",
-          university_name: "Weldin Academy",
-          details: "learned to pee outside",
-        },
-      ],
-      skills: [
-        {
-          skill_name: "chewing",
-        },
-        {
-          skill_name: "sniffing",
-        },
-      ],
+      student: {},
       newSkill: "",
-      capstones: [
-        {
-          name: "toy directory",
-          description: "catelog of toys",
-          url: "mytoys.com",
-          screenshot: "rope.jpg",
-        },
-        {
-          name: "toy dir",
-          description: "catelog of toys",
-          url: "mytoys.com",
-          screenshot: "rope.jpg",
-        },
-      ],
     };
   },
   created: function() {
@@ -166,32 +101,29 @@ export default {
   },
   methods: {
     addSkill: function() {
-      console.log(this.newSkill);
-      this.skills.push({ skill_name: this.newSkill });
-      this.newSkill = "";
-      // axios
-      //   .post("/api/skills", { skill_name: this.newSkill })
-      //   .then(response => {
-      //     console.log(response);
-      //   })
-      //   .catch(error => {
-      //     this.status = error.response.status;
-      //     this.errors = error.response.data.errors;
-      //   });
+      axios
+        .post("/api/skills", { name: this.newSkill })
+        .then((response) => {
+          console.log(response);
+          this.student.skills.push({ name: this.newSkill });
+          this.newSkill = "";
+        })
+        .catch((error) => {
+          this.status = error.response.status;
+          this.errors = error.response.data.errors;
+        });
     },
     removeSkill: function(skill) {
-      var index = this.skills.indexOf(skill);
-      this.skills.splice(index, 1);
-      // axios
-      //   .delete(`/api/skills/${skill.id}`)
-      //   .then(response => {
-      //     console.log(response.data);
-      //     var index = this.skills.indexOf(skill);
-      //     this.skills.splice(index, 1);
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
+      axios
+        .delete(`/api/skills/${skill.id}`)
+        .then((response) => {
+          console.log(response.data);
+          var index = this.student.skills.indexOf(skill);
+          this.student.skills.splice(index, 1);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     formattedDate: function(date) {
       return moment(date).format("MMM Do YY");
