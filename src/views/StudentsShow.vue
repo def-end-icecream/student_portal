@@ -1,21 +1,24 @@
 <template>
   <div class="students-show">
     <div>
-      <h1>Student Info</h1>
-      <p>First Name: {{ student.first_name }}</p>
-      <p>Last Name: {{ student.last_name }}</p>
+      <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+      <img :src="student.image_url" :alt="student.first_name" />
       <p>Email: {{ student.email }}</p>
       <p>Phone Number: {{ student.phone_number }}</p>
       <p>Short Bio: {{ student.short_bio }}</p>
-      <p>Linkedin URL: {{ student.linkedin_url }}</p>
-      <p>Twitter handle: {{ student.twitter_handle }}</p>
-      <p>Personal Website URL: {{ student.personal_website_url }}</p>
-      <p>Online Resume URL: {{ student.resume_url }}</p>
-      <p>Github URL: {{ student.github_url }}</p>
-      <p>Photo: {{ student.image_url }}</p>
-      <router-link :to="`/students/${student.id}/edit`"
-        >Edit Profile</router-link
-      >
+      <a :href="student.linkedin_url" target="_blank">LinkedIn</a>
+      <br />
+      <a :href="`https://twitter.com/${student.twitter_handle}`" target="_blank">Twitter</a>
+      <br />
+      <a :href="student.personal_website_url" target="_blank">Personal Website</a>
+      <br />
+      <a :href="student.resume_url" target="_blank">Resume</a>
+      <br />
+      <a :href="student.github_url" target="_blank">GitHub</a>
+      <br />
+      <router-link :to="`/students/${student.id}/edit`">
+        Edit Profile
+      </router-link>
       <h1>Experience</h1>
       <router-link to="/experiences/new">New Experience</router-link>
       <div
