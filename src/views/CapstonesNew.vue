@@ -49,7 +49,6 @@ export default {
         })
         .catch((error) => {
           console.log("post create error", error.response);
-          // this.status = error.response.status;
           this.errors = error.response.data.errors;
         });
     },

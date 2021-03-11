@@ -43,8 +43,6 @@ export default {
         url: capstone.url,
         screenshot: capstone.screenshot,
       };
-      // console.log(params);
-      // this.$router.push("/students/1");
       axios
         .patch(`/api/capstones/${this.capstone.id}`, params)
         .then((response) => {
