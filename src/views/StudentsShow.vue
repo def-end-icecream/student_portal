@@ -45,9 +45,9 @@
         <router-link to="/educations/:id/edit">Edit</router-link>
       </div>
       <h1>Skills</h1>
-      <div v-for="skill in skills" v-bind:key="skill.skill_name">
+      <div v-for="skill in student.skills" v-bind:key="skill.name">
         <p>
-          {{ skill.skill_name }}
+          {{ skill.name }}
           <button v-on:click="removeSkill(skill)">x</button>
         </p>
       </div>
@@ -94,6 +94,7 @@ export default {
         image_url:
           "https://i.pinimg.com/236x/d2/de/71/d2de7134f98c49d1f27cb47f2f91d002--quakertown-pa-bloodhound.jpg",
       },
+      newSkill: "",
       experiences: [
         {
           start_date: "12/05/18",
@@ -119,15 +120,6 @@ export default {
           details: "learned to pee outside",
         },
       ],
-      skills: [
-        {
-          skill_name: "chewing",
-        },
-        {
-          skill_name: "sniffing",
-        },
-      ],
-      newSkill: "",
       capstones: [
         {
           name: "toy directory",
@@ -152,32 +144,29 @@ export default {
   },
   methods: {
     addSkill: function() {
-      console.log(this.newSkill);
-      this.skills.push({ skill_name: this.newSkill });
-      this.newSkill = "";
-      // axios
-      //   .post("/api/skills", { skill_name: this.newSkill })
-      //   .then(response => {
-      //     console.log(response);
-      //   })
-      //   .catch(error => {
-      //     this.status = error.response.status;
-      //     this.errors = error.response.data.errors;
-      //   });
+      axios
+        .post("/api/skills", { name: this.newSkill })
+        .then(response => {
+          console.log(response);
+          this.student.skills.push({ name: this.newSkill });
+          this.newSkill = "";
+        })
+        .catch(error => {
+          this.status = error.response.status;
+          this.errors = error.response.data.errors;
+        });
     },
     removeSkill: function(skill) {
-      var index = this.skills.indexOf(skill);
-      this.skills.splice(index, 1);
-      // axios
-      //   .delete(`/api/skills/${skill.id}`)
-      //   .then(response => {
-      //     console.log(response.data);
-      //     var index = this.skills.indexOf(skill);
-      //     this.skills.splice(index, 1);
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
+      axios
+        .delete(`/api/skills/${skill.id}`)
+        .then(response => {
+          console.log(response.data);
+          var index = this.student.skills.indexOf(skill);
+          this.student.skills.splice(index, 1);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
   },
 };
