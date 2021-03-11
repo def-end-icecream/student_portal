@@ -104,8 +104,7 @@ export default {
       axios
         .post("/api/skills", { name: this.newSkill })
         .then((response) => {
-          console.log(response);
-          this.student.skills.push({ name: this.newSkill });
+          this.student.skills.push(response.data);
           this.newSkill = "";
         })
         .catch((error) => {
