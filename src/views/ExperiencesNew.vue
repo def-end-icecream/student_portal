@@ -18,6 +18,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 export default {
   data: function() {
     return {
@@ -48,6 +49,9 @@ export default {
         .catch((error) => {
           console.log(error.response.data.errors);
         });
+    },
+    formattedDate: function(date) {
+      return moment(date).format("MMM Do YY");
     },
   },
 };

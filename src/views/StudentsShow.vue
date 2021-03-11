@@ -30,8 +30,8 @@
         v-bind:key="experience.start_date"
       >
         <h2>Job Title: {{ experience.job_title }}</h2>
-        <p>Start Date: {{ experience.start_date }}</p>
-        <p>End Date: {{ experience.end_date }}</p>
+        <p>Start Date: {{ formattedDate(experience.start_date) }}</p>
+        <p>End Date: {{ formattedDate(experience.end_date) }}</p>
         <p>Company Name: {{ experience.company_name }}</p>
         <p>Details: {{ experience.details }}</p>
 
@@ -84,6 +84,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 
 export default {
   data: function() {
@@ -123,6 +124,9 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    formattedDate: function(date) {
+      return moment(date).format("MMM Do YY");
     },
   },
 };
