@@ -52,7 +52,12 @@ const routes = [
     component: Logout,
   },
   {
-    path: "/capstones/1",
+    path: "/capstones/new",
+    name: "capstones-new",
+    component: CapstonesNew
+  },
+  {
+    path: "/capstones/:id", 
     name: "capstones-show",
     component: CapstonesShow
   },
@@ -60,11 +65,6 @@ const routes = [
     path: "/capstones/:id/edit",
     name: "capstones-edit",
     component: CapstonesEdit
-  },
-  {
-    path: "/capstones/new",
-    name: "capstones-new",
-    component: CapstonesNew
   },
   {
     path: "/experiences/new",

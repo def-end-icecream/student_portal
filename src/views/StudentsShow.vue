@@ -52,8 +52,11 @@
       <button v-on:click="addSkill()">Add</button>
 
       <h1>Capstone</h1>
-      <router-link v-bind:to="`/capstones/new`">Add New Capstone</router-link>
-      <div v-for="capstone in capstones" v-bind:key="capstone.capstone_name">
+      <router-link to="/capstones/new">Add New Capstone</router-link>
+      <div
+        v-for="capstone in student.capstones"
+        v-bind:key="capstone.capstone_name"
+      >
         <h2>Name: {{ capstone.name }}</h2>
         <p>URL: {{ capstone.url }}</p>
         <p>Description: {{ capstone.description }}</p>
@@ -152,29 +155,29 @@ export default {
       console.log(this.newSkill);
       this.skills.push({ skill_name: this.newSkill });
       this.newSkill = "";
-      // axios
-      //   .post("/api/skills", { skill_name: this.newSkill })
-      //   .then(response => {
-      //     console.log(response);
-      //   })
-      //   .catch(error => {
-      //     this.status = error.response.status;
-      //     this.errors = error.response.data.errors;
-      //   });
+      axios
+        .post("/api/skills", { skill_name: this.newSkill })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          this.status = error.response.status;
+          this.errors = error.response.data.errors;
+        });
     },
     removeSkill: function(skill) {
       var index = this.skills.indexOf(skill);
       this.skills.splice(index, 1);
-      // axios
-      //   .delete(`/api/skills/${skill.id}`)
-      //   .then(response => {
-      //     console.log(response.data);
-      //     var index = this.skills.indexOf(skill);
-      //     this.skills.splice(index, 1);
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
+      axios
+        .delete(`/api/skills/${skill.id}`)
+        .then((response) => {
+          console.log(response.data);
+          var index = this.skills.indexOf(skill);
+          this.skills.splice(index, 1);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };
