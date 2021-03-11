@@ -99,17 +99,16 @@ export default {
         image_url: this.student.image_url,
       };
 
-      console.log("profile updated!", params);
       this.$router.push(`/students/${this.$route.params.id}`);
-      // axios
-      //   .patch(`/api/students/${this.student.id}`, params)
-      //   .then(response => {
-      //     console.log(response.data);
-      //     this.$router.push(`/students/${this.student.id}`);
-      //   })
-      //   .catch(error => {
-      //     this.errors = error.response.data.errors;
-      //   });
+      axios
+        .patch(`/api/students/${this.student.id}`, params)
+        .then(response => {
+          console.log(response.data);
+          this.$router.push(`/students/${this.student.id}`);
+        })
+        .catch(error => {
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };

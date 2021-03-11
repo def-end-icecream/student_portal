@@ -1,7 +1,7 @@
 <template>
   <div class="educations-edit">
     <form v-on:submit.prevent="educationsEdit()">
-      <h1>Update Experience</h1>
+      <h1>Update Education</h1>
       <ul>
         <li class="text-danger" v-for="error in errors" v-bind:key="error">
           {{ error }}
@@ -41,32 +41,32 @@
       </div> -->
       <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
-    <button v-on:click="educationDestroy()">Delete Profile</button>
+    <button v-on:click="educationDestroy()">Delete Education Instance</button>
   </div>
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 
 export default {
   data: function() {
     return {
       education: {
-        start_date: "10/10/12",
-        end_date: "10/10/13",
-        degree: "best pup",
-        university_name: "Weldin Academy",
-        details: "learned to pee outside",
+        start_date: "",
+        end_date: "",
+        degree: "",
+        university_name: "",
+        details: "",
       },
       errors: [],
     };
   },
-  // created: function() {
-  //   axios.get(`/api/educations/${this.$route.params.id}`).then((response) => {
-  //     console.log(response.data);
-  //     this.education = response.data;
-  //   });
-  // },
+  created: function() {
+    axios.get(`/api/educations/${this.$route.params.id}`).then((response) => {
+      console.log(response.data);
+      this.education = response.data;
+    });
+  },
   methods: {
     educationsEdit: function() {
       var params = {
@@ -77,28 +77,26 @@ export default {
         details: this.education.details,
         // education_id: this.post.educationId,
       };
-      console.log(params);
-      this.$router.push("/students/1");
-      // axios
-      //   .patch(`/api/educations/${this.$route.params.id}`, params)
-      //   .then((response) => {
-      //     console.log(response.data);
-      //     this.$router.push(`/`);
-      //   })
-      //   .catch((error) => {
-      //     this.errors = error.response.data.errors;
-      //   });
+      axios
+        .patch(`/api/educations/${this.$route.params.id}`, params)
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push(`/students/${this.$parent.getStudentId()}`);
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
-    // educationDestroy: function() {
-    //   if (confirm("Are you sure you want to delete this education instance?")) {
-    //     axios
-    //       .delete(`/api/educations/${this.$route.params.id}`)
-    //       .then((response) => {
-    //         console.log(response.data);
-    //         this.$router.push("/");
-    //       });
-    //   }
-    // },
+    educationDestroy: function() {
+      if (confirm("Are you sure you want to delete this education instance?")) {
+        axios
+          .delete(`/api/educations/${this.$route.params.id}`)
+          .then((response) => {
+            console.log(response.data);
+            this.$router.push(`/students/${this.$parent.getStudentId()}`);
+          });
+      }
+    },
   },
 };
 </script>

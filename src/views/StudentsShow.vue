@@ -1,24 +1,34 @@
 <template>
   <div class="students-show">
     <div>
-      <h1>Student Info</h1>
-      <p>First Name: {{ student.first_name }}</p>
-      <p>Last Name: {{ student.last_name }}</p>
+      <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+      <img :src="student.image_url" :alt="student.first_name" />
       <p>Email: {{ student.email }}</p>
       <p>Phone Number: {{ student.phone_number }}</p>
       <p>Short Bio: {{ student.short_bio }}</p>
-      <p>Linkedin URL: {{ student.linkedin_url }}</p>
-      <p>Twitter handle: {{ student.twitter_handle }}</p>
-      <p>Personal Website URL: {{ student.personal_website_url }}</p>
-      <p>Online Resume URL: {{ student.resume_url }}</p>
-      <p>Github URL: {{ student.github_url }}</p>
-      <p>Photo: {{ student.image_url }}</p>
-      <router-link :to="`/students/${student.id}/edit`"
-        >Edit Profile</router-link
+      <a :href="student.linkedin_url" target="_blank">LinkedIn</a>
+      <br />
+      <a :href="`https://twitter.com/${student.twitter_handle}`" target="_blank"
+        >Twitter</a
       >
+      <br />
+      <a :href="student.personal_website_url" target="_blank"
+        >Personal Website</a
+      >
+      <br />
+      <a :href="student.resume_url" target="_blank">Resume</a>
+      <br />
+      <a :href="student.github_url" target="_blank">GitHub</a>
+      <br />
+      <router-link :to="`/students/${student.id}/edit`">
+        Edit Profile
+      </router-link>
       <h1>Experience</h1>
       <router-link to="/experiences/new">New Experience</router-link>
-      <div v-for="experience in experiences" v-bind:key="experience.start_date">
+      <div
+        v-for="experience in student.experiences"
+        v-bind:key="experience.start_date"
+      >
         <h2>Job Title: {{ experience.job_title }}</h2>
         <p>Start Date: {{ experience.start_date }}</p>
         <p>End Date: {{ experience.end_date }}</p>
@@ -33,18 +43,21 @@
       <router-link to="/educations/new"
         >Create Another Education Instance</router-link
       >
-      <div v-for="education in educations" v-bind:key="education.start_date">
+      <div
+        v-for="education in student.educations"
+        v-bind:key="education.start_date"
+      >
         <h2>Degree: {{ education.degree }}</h2>
         <p>Start Date: {{ education.start_date }}</p>
         <p>End Date: {{ education.end_date }}</p>
         <p>University Name: {{ education.university_name }}</p>
         <p>Details: {{ education.details }}</p>
-        <router-link to="/educations/:id/edit">Edit</router-link>
+        <router-link :to="`/educations/${education.id}/edit`">Edit</router-link>
       </div>
       <h1>Skills</h1>
-      <div v-for="skill in skills" v-bind:key="skill.skill_name">
+      <div v-for="skill in student.skills" v-bind:key="skill.name">
         <p>
-          {{ skill.skill_name }}
+          {{ skill.name }}
           <button v-on:click="removeSkill(skill)">x</button>
         </p>
       </div>
@@ -80,68 +93,8 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      student: {
-        first_name: "Alice",
-        last_name: "Evans",
-        email: "a@gmail.com",
-        phone_number: "111-222-3333",
-        short_bio: "I love sticks",
-        linkedin_url: "linkedin.com",
-        twitter_handle: "@alice",
-        personal_website_url: "alice.com",
-        resume_url: "aliceresume.com",
-        github_url: "alicegit",
-        image_url:
-          "https://i.pinimg.com/236x/d2/de/71/d2de7134f98c49d1f27cb47f2f91d002--quakertown-pa-bloodhound.jpg",
-      },
-      experiences: [
-        {
-          start_date: "12/05/18",
-          end_date: "03/08/21",
-          job_title: "professional stick chaser",
-          company_name: "stick catchers",
-          details: "I ran after sticks",
-        },
-        {
-          start_date: "11/06/18",
-          end_date: "02/07/21",
-          job_title: "guard dog",
-          company_name: "scary dogs",
-          details: "I bark at harmless nice people",
-        },
-      ],
-      educations: [
-        {
-          start_date: "10/10/12",
-          end_date: "10/10/13",
-          degree: "best pup",
-          university_name: "Weldin Academy",
-          details: "learned to pee outside",
-        },
-      ],
-      skills: [
-        {
-          skill_name: "chewing",
-        },
-        {
-          skill_name: "sniffing",
-        },
-      ],
+      student: {},
       newSkill: "",
-      capstones: [
-        {
-          name: "toy directory",
-          description: "catelog of toys",
-          url: "mytoys.com",
-          screenshot: "rope.jpg",
-        },
-        {
-          name: "toy dir",
-          description: "catelog of toys",
-          url: "mytoys.com",
-          screenshot: "rope.jpg",
-        },
-      ],
     };
   },
   created: function() {
@@ -152,13 +105,12 @@ export default {
   },
   methods: {
     addSkill: function() {
-      console.log(this.newSkill);
-      this.skills.push({ skill_name: this.newSkill });
-      this.newSkill = "";
       axios
-        .post("/api/skills", { skill_name: this.newSkill })
+        .post("/api/skills", { name: this.newSkill })
         .then((response) => {
           console.log(response);
+          this.student.skills.push({ name: this.newSkill });
+          this.newSkill = "";
         })
         .catch((error) => {
           this.status = error.response.status;
@@ -166,14 +118,12 @@ export default {
         });
     },
     removeSkill: function(skill) {
-      var index = this.skills.indexOf(skill);
-      this.skills.splice(index, 1);
       axios
         .delete(`/api/skills/${skill.id}`)
         .then((response) => {
           console.log(response.data);
-          var index = this.skills.indexOf(skill);
-          this.skills.splice(index, 1);
+          var index = this.student.skills.indexOf(skill);
+          this.student.skills.splice(index, 1);
         })
         .catch((error) => {
           console.log(error);
