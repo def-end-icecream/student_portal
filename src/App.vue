@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link v-if="isLoggedIn()" :to="`/students/${getStudentId()}`"
-        >Profile</router-link
-      >
-      | <router-link v-if="!isLoggedIn()" to="/login">Login</router-link> |
+      <span v-if="isLoggedIn()">
+        <router-link :to="`/students/${getStudentId()}`">
+          Profile
+        </router-link>
+        |
+      </span>
       <router-link v-if="isLoggedIn()" to="/logout">Logout</router-link>
     </div>
     <router-view />
