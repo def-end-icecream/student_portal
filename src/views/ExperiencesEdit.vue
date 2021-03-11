@@ -26,7 +26,7 @@
 
 <script>
 import axios from "axios";
-import moment from "moment";
+// import moment from "moment";
 export default {
   data: function() {
     return {
@@ -82,9 +82,9 @@ export default {
           });
       }
     },
-    formattedDate: function(date) {
-      return moment(date).format();
-    },
+    // formattedDate: function(date) {
+    //   return moment(date).format("MMM Do YY");
+    // },
   },
 };
 </script>

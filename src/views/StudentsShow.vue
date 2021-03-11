@@ -48,8 +48,8 @@
         v-bind:key="education.start_date"
       >
         <h2>Degree: {{ education.degree }}</h2>
-        <p>Start Date: {{ education.start_date }}</p>
-        <p>End Date: {{ education.end_date }}</p>
+        <p>Start Date: {{ formattedDate(education.start_date) }}</p>
+        <p>End Date: {{ formattedDate(education.end_date) }}</p>
         <p>University Name: {{ education.university_name }}</p>
         <p>Details: {{ education.details }}</p>
         <router-link :to="`/educations/${education.id}/edit`">Edit</router-link>
