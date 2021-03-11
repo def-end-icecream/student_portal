@@ -7,7 +7,7 @@ import axios from "axios";
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 axios.defaults.baseURL =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:3000"
+    ? "https://immense-fortress-95120.herokuapp.com"
     : "/";
 
 var jwt = localStorage.getItem("jwt");
