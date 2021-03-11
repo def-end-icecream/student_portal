@@ -17,7 +17,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 export default {
   data: function() {
     return {
@@ -38,17 +38,16 @@ export default {
         company_name: this.company_name,
         details: this.details,
       };
-      console.log(params);
-      this.$router.push("/students/1");
-      //   axios
-      //     .post("api/experiences", params)
-      //     .then((response) => {
-      //       console.log(response.data);
-      //       this.$router.push("/experiences");
-      //     })
-      //     .catch((error) => {
-      //       console.log(error.response.data.errors);
-      //     });
+
+      axios
+        .post("api/experiences", params)
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push(`/students/${this.$parent.getStudentId()}`);
+        })
+        .catch((error) => {
+          console.log(error.response.data.errors);
+        });
     },
   },
 };

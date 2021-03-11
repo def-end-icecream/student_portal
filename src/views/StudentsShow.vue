@@ -21,7 +21,10 @@
       </router-link>
       <h1>Experience</h1>
       <router-link to="/experiences/new">New Experience</router-link>
-      <div v-for="experience in experiences" v-bind:key="experience.start_date">
+      <div
+        v-for="experience in student.experiences"
+        v-bind:key="experience.start_date"
+      >
         <h2>Job Title: {{ experience.job_title }}</h2>
         <p>Start Date: {{ experience.start_date }}</p>
         <p>End Date: {{ experience.end_date }}</p>
