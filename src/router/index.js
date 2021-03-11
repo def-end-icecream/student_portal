@@ -52,7 +52,7 @@ const routes = [
     component: Logout,
   },
   {
-    path: "/capstones/1",
+    path: "/capstones/:id",
     name: "capstones-show",
     component: CapstonesShow
   },
